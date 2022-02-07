@@ -17,13 +17,12 @@ class InventoryEdit extends Component {
     };
   }
   async componentDidMount() {
-    if (this.props.match.params.id !== "new") {
-      const inventory = await (
-        await fetch(`/api/inventory/${this.props.match.params.id}`)
-      ).json();
-      this.setState({ item: inventory });
+    if (this.props.match.params.id !== 'new') {
+        const inventory =
+            await (await fetch(`/api/inventory/${this.props.match.params.id}`)).json();
+        this.setState({ item: inventory });
     }
-  }
+}
   handleChange = (event) => {
     const target = event.target;
     const value = target.value;

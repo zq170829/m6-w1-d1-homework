@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, ButtonGroup, Container, Table } from "reactstrap";
-import AppNavbar  from "./AppNavbar";
+import AppNavbar from "./AppNavbar";
 import { Link } from "react-router-dom";
 
 class InventoryList extends Component {
@@ -14,6 +14,7 @@ class InventoryList extends Component {
   //lifecycle hook
   componentDidMount() {
     this.setState({ isLoading: true });
+
     fetch("api/inventories")
       .then((response) => response.json())
       .then((data) => this.setState({ inventories: data, isLoading: false }));
@@ -23,7 +24,7 @@ class InventoryList extends Component {
     await fetch(`/api/inventory/${id}`, {
       method: "DELETE",
       headers: {
-        'Accept': "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
     });
@@ -37,10 +38,10 @@ class InventoryList extends Component {
 
   render() {
     const { inventories, isLoading } = this.state;
+
     if (isLoading) {
       return <p>Loading...</p>;
     }
-
     const inventoryList = inventories.map((inventory) => {
       return (
         <tr key={inventory._id}>
@@ -50,10 +51,19 @@ class InventoryList extends Component {
           <td>{inventory.status}</td>
           <td>
             <ButtonGroup>
-              <Button size="sm" color="primary" tag={Link} to={"/inventories/" + inventory._id}>
+              <Button
+                size="sm"
+                color="primary"
+                tag={Link}
+                to={"/inventories/" + inventory._id}
+              >
                 Edit
               </Button>
-              <Button size="sm" color="danger" onClick={() => this.removeInv(inventory._id)}>
+              <Button
+                size="sm"
+                color="danger"
+                onClick={() => this.removeInv(inventory._id)}
+              >
                 Delete
               </Button>
             </ButtonGroup>
@@ -67,7 +77,12 @@ class InventoryList extends Component {
         <AppNavbar />
         <Container fluid>
           <div className="float-right">
-            <Button color="success" className="my-4" tag={Link} to="/inventories/new">
+            <Button
+              color="success"
+              className="my-4"
+              tag={Link}
+              to="/inventories/new"
+            >
               Add inventory
             </Button>
           </div>

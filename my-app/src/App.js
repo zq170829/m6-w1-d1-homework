@@ -10,12 +10,11 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route path='/' exact={true} component={Home}></Route>
-          <Route path='/inventories' exact={true} component={InventoryList}></Route>
-          <Route path='/inventories/:id' component={InventoryEdit}></Route>
+          <Route path='/' exact={true} component={Home} />
+          <Route path='/inventories' exact={true} component={InventoryList} />
+          <Route path='/inventories/:id' component={InventoryEdit} />
         </Switch>
       </Router>
-
     );
   }
 }
