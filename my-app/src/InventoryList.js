@@ -11,7 +11,6 @@ class InventoryList extends Component {
       isLoading: true,
     };
   }
-  //lifecycle hook
   componentDidMount() {
     this.setState({ isLoading: true });
 
@@ -19,7 +18,6 @@ class InventoryList extends Component {
       .then((response) => response.json())
       .then((data) => this.setState({ inventories: data, isLoading: false }));
   }
-  //remove handle
   removeInv = async (id) => {
     await fetch(`/api/inventory/${id}`, {
       method: "DELETE",
@@ -35,7 +33,6 @@ class InventoryList extends Component {
     );
     this.setState({ inventories: updatedInventories });
   };
-
   render() {
     const { inventories, isLoading } = this.state;
 

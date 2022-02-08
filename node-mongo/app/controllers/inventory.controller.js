@@ -9,7 +9,7 @@ exports.createInventory = (req, res) => {
     price: req.body.price,
     status: req.body.status,
   });
-  //save a Inventory in the MongoDB
+  // Save an Inventory in the MongoDB
   inventory
     .save()
     .then((data) => {
@@ -30,7 +30,7 @@ exports.getInventory = (req, res) => {
       res.status(200).json(inventory);
     })
     .catch((err) => {
-      if (err.kind === "Object") {
+      if (err.kind === "ObjectId") {
         return res.status(404).send({
           message: "Inventory not found with id " + req.params.id,
           error: err,
@@ -98,14 +98,15 @@ exports.updateInventory = (req, res) => {
         return res.status(404).send({
           message:
             "Error -> Can't update an inventory with id = " + req.params.id,
-          error: "Not found!",
+          error: "Not Found!",
         });
       }
-      req.status(200).json(inventory);
+      res.status(200).json(inventory);
     })
     .catch((err) => {
       return res.status(500).send({
-        message: "Error -> Can't update an inventory with id= " + req.params.id,
+        message:
+          "Error -> Can't update an inventory with id = " + req.params.id,
         error: err.message,
       });
     });
